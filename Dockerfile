@@ -8,4 +8,4 @@ COPY pool_controller.py ./
 RUN pip install --no-cache-dir rpi.gpio
 
 # Trigger Python script
-CMD ["python", "./pool_controller.py"]
+CMD ["python", "./pool_controller.py", "run"]

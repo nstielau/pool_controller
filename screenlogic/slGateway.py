@@ -1,4 +1,5 @@
 import socket
+
 from gateway.gatewayLogin import gatewayLogin
 from gateway.gatewayQuery import queryGateway, queryConfig, queryStatus, queryButtonPress
 

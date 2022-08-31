@@ -1,11 +1,12 @@
+import json
 import sys
 import time
+
 from multiprocessing import Lock
 from gateway.gatewayDiscovery import discoverGateway
-from slGateway import slGateway
-from slSwitch import slSwitch
-from slSensor import slSensor
-import json
+from screenlogic.slGateway import slGateway
+from screenlogic.slSwitch import slSwitch
+from screenlogic.slSensor import slSensor
 
 class slBridge:
     def __init__(self, verbose=False, updateInterval=30, gatewayIP=None, gatewayPort=None):

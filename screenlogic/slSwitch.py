@@ -1,4 +1,4 @@
-from slDevice import slDevice
+from screenlogic.slDevice import slDevice
 from gateway.constants import mapping
 
 class slSwitch(slDevice):
