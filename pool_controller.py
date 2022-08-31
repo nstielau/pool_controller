@@ -27,7 +27,7 @@ while True:
     print('Button Pressed')
     GPIO.output(LED_PIN, True)
     time.sleep(0.2)
-  else
+  else:
     GPIO.output(LED_PIN, False)
 
 
