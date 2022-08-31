@@ -17,10 +17,10 @@ blink_interval = .5 #Time interval in Seconds
 
 # Blinker Loop
 while True:
- GPIO.output(BLINKER_PIN, True)
- time.sleep(blink_interval)
- GPIO.output(BLINKER_PIN, False)
- time.sleep(blink_interval)
+  GPIO.output(BLINKER_PIN, True)
+  time.sleep(blink_interval)
+  GPIO.output(BLINKER_PIN, False)
+  time.sleep(blink_interval)
 
   input_state = GPIO.input(BUTTON_PIN)
   if input_state == False:
