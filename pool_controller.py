@@ -2,7 +2,7 @@ import time
 
 import RPi.GPIO as GPIO
 
-from screenlogic import screenlogic
+from screenlogic.screenlogic import slBridge
 
 BLINKER_PIN=8
 LED_PIN=10
@@ -18,7 +18,7 @@ GPIO.setwarnings(False)
 # Blink Interval 
 blink_interval = .5 #Time interval in Seconds
 
-bridge = screenlogic.slBridge(True)
+bridge = slBridge(True)
 
 # Blinker Loop
 while True:
