@@ -4,7 +4,7 @@ FROM balenalib/raspberry-pi-python:3.10-build
 ENV VERSION=1.0.0
 RUN python --version
 
-RUN curl https://sh.rustup.rs -sSfy | sh
+RUN curl https://sh.rustup.rs -sSf > rustinit && chmod 755 rustinit && ./rustinit -y
 
 # Copy the Python files
 COPY pool_controller.py ./
