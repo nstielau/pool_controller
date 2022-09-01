@@ -1,8 +1,6 @@
 import time
 import sys
 
-print(sys.path)
-
 from screenlogic.screenlogic import slBridge
 
 BLINKER_PIN=8
@@ -38,7 +36,7 @@ if(len(sys.argv) > 1):
       time.sleep(0.2)
       current_value = bridge.getCircuit(502)
       print('current value is ' + current_value)
-      new_value =  254-(~int(current_value) & 255)
+      new_value = 0 if old_value == "On" else 1
       print('New value is ' + new_value)    
       bridge.setCircuit(502, new_value)
     else:
