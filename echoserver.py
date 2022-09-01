@@ -54,7 +54,7 @@ def index():
 
 @route('/', method=['POST'])
 def index():
-    body = request.body.read()
+    body = request.body.read().decode()
     headers = request.headers
     print(headers)
     print(body)
