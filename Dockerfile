@@ -1,5 +1,5 @@
 # Python Base Image from https://hub.docker.com/r/arm32v7/python/
-FROM balenalib/raspberry-pi-python:3.10-bookwork
+FROM balenalib/raspberry-pi-python:3.10-build
 
 ENV VERSION=1.0.0
 RUN python --version
