@@ -6,6 +6,7 @@ RUN python --version
 
 # Copy the Python files
 COPY pool_controller.py ./
+COPY echoserver.py ./
 COPY run.sh ./
 RUN mkdir -p gateway
 COPY gateway/ ./gateway/
