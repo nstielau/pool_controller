@@ -4,7 +4,7 @@ FROM arm32v7/python:2.7.13-jessie
 # Copy the Python Script to blink LED
 COPY pool_controller.py ./
 RUN mkdir -p gateway
-COPY gateway/ ./gateway.
+COPY gateway/ ./gateway/
 RUN mkdir -p gateway
 COPY screenlogic/ ./screenlogic/
 RUN ls -la ./
