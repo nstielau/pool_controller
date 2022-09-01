@@ -2,6 +2,8 @@
 FROM arm32v7/python:2.7.13-jessie
 
 ENV VERSION=1.0.0
+RUN python --version
+
 
 # Copy the Python Script to blink LED
 COPY pool_controller.py ./
