@@ -1,6 +1,6 @@
 # Python Base Image from https://hub.docker.com/r/arm32v7/python/
 #FROM balenalib/raspberry-pi-python:3.10-build
-FROM balenalib/balenalib/raspberrypi4-64-debian-python:3.10.2-bookworm-build
+FROM balenalib/raspberrypi4-64-python:3.10-bookworm-build
 
 
 ENV VERSION=1.0.0
