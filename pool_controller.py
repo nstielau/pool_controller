@@ -1,6 +1,8 @@
 import time
 import sys
 
+print(sys.path)
+
 from screenlogic.screenlogic import slBridge
 
 BLINKER_PIN=8

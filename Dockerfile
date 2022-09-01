@@ -1,5 +1,5 @@
 # Python Base Image from https://hub.docker.com/r/arm32v7/python/
-FROM arm32v7/python:2.7.13-jessie
+FROM arm32v7/python:3.10.6
 
 ENV VERSION=1.0.0
 RUN python --version
