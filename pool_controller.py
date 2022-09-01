@@ -6,8 +6,18 @@ from screenlogic.screenlogic import slBridge
 LED_PIN=10
 BUTTON_PIN=12
 
-SWIM_JET_CIRCUIT=502
+SWIM_JET_CIRCUIT=503 # 502 is swim jet, 503 is lights
+# 500 - Spa
+# 501 - Cleaner
+# 502 - Swim Jets
+# 503 - Pool Light
+# 504 - Spa Light
+# 505 - Pool
+# 506 - Aux 5
+# 507 - Aux 6
+# 508 - Aux 7
 
+ 
 if(len(sys.argv) > 1): # look for any any, e.g. "run"
   import RPi.GPIO as GPIO
 

@@ -16,6 +16,8 @@ COPY screenlogic/ ./screenlogic/
 # Intall the rpi.gpio python module
 RUN pip install --no-cache-dir rpi.gpio
 RUN pip install --no-cache-dir bottle
+RUN pip install --no-cache-dir ask-sdk
+RUN pip install --no-cache-dir ask-sdk-webservice-support
 
 # Trigger Python script
 CMD ["bash", "./run.sh"]
