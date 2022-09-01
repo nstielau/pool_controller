@@ -5,6 +5,8 @@ FROM arm32v7/python:2.7.13-jessie
 COPY pool_controller.py ./
 COPY gateway/ ./
 COPY screenlogic/ ./
+RUN ls -la ./
+RUN ls -la ./screenlogic
 
 # Intall the rpi.gpio python module
 RUN pip install --no-cache-dir rpi.gpio
