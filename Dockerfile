@@ -1,6 +1,8 @@
 # Python Base Image from https://hub.docker.com/r/arm32v7/python/
 FROM arm32v7/python:2.7.13-jessie
 
+ENV VERSION=1.0.0
+
 # Copy the Python Script to blink LED
 COPY pool_controller.py ./
 RUN mkdir -p gateway
