@@ -7,6 +7,7 @@ BLINKER_PIN=8
 LED_PIN=10
 BUTTON_PIN=12
 
+bridge = slBridge(True)
 
 if(len(sys.argv) > 1):
   import RPi.GPIO as GPIO
@@ -20,8 +21,6 @@ if(len(sys.argv) > 1):
 
   # Blink Interval 
   blink_interval = .5 #Time interval in Seconds
-
-  bridge = slBridge(True)
 
   # Blinker Loop
   while True:
