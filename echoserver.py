@@ -1,6 +1,6 @@
 from bottle import route, run, template, request
 
-@route('/')
+@route('/', method=['GET', 'POST'])
 def index():
     print(request.body.read())
     print()
