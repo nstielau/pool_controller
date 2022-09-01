@@ -4,6 +4,8 @@ FROM balenalib/raspberry-pi-python:3.10-build
 ENV VERSION=1.0.0
 RUN python --version
 
+RUN apt-get install -y rustc
+
 # Copy the Python files
 COPY pool_controller.py ./
 COPY echoserver.py ./
