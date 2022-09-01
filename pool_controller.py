@@ -8,8 +8,6 @@ BUTTON_PIN=12
 
 SWIM_JET_CIRCUIT=502
 
-bridge = slBridge(True)
-
 if(len(sys.argv) > 1): # look for any any, e.g. "run"
   import RPi.GPIO as GPIO
 
@@ -26,10 +24,12 @@ if(len(sys.argv) > 1): # look for any any, e.g. "run"
       print('Button Pressed at ' + time.ctime())
       GPIO.output(LED_PIN, True)
       time.sleep(0.2)
+
+      bridge = slBridge(True) # bridge update logic seems broke
       current_value = bridge.getCircuit(SWIM_JET_CIRCUIT)
       print('current value is ' + current_value)
       new_value = 0 if current_value == "On" else 1
       print('New value is ' + str(new_value))    
-      bridge.setCircuit(502, new_value)
+      bridge.setCircuit(SWIM_JET_CIRCUIT, new_value)
     else:
       GPIO.output(LED_PIN, False)
