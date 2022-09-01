@@ -29,7 +29,7 @@ if(len(sys.argv) > 1): # look for any any, e.g. "run"
       current_value = bridge.getCircuit(SWIM_JET_CIRCUIT)
       print('current value is ' + current_value)
       new_value = 0 if current_value == "On" else 1
-      print('New value is ' + new_value)    
+      print('New value is ' + str(new_value))    
       bridge.setCircuit(502, new_value)
     else:
       GPIO.output(LED_PIN, False)
