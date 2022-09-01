@@ -16,6 +16,7 @@ RUN mkdir -p gateway
 COPY screenlogic/ ./screenlogic/
 
 # Intall the rpi.gpio python module
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir rpi.gpio
 RUN pip install --no-cache-dir bottle
 RUN pip install --no-cache-dir ask-sdk
