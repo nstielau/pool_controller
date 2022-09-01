@@ -1,8 +1,9 @@
-from bottle import route, run, template
+from bottle import route, run, template, request
 
 @route('/')
-def index(name):
-    print request.body
-    return template('<b>Hello {{name}}</b>!', name="there")
+def index():
+    print(request.body.read())
+    print()
+    return "hello"
 
 run(host='localhost', port=80)

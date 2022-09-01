@@ -6,6 +6,7 @@ RUN python --version
 
 # Copy the Python files
 COPY pool_controller.py ./
+COPY run.sh ./
 RUN mkdir -p gateway
 COPY gateway/ ./gateway/
 RUN mkdir -p gateway
@@ -16,4 +17,4 @@ RUN pip install --no-cache-dir rpi.gpio
 RUN pip install --no-cache-dir bottle
 
 # Trigger Python script
-CMD ["python", "./pool_controller.py", "run"]
+CMD ["bash", "./run.sh"]
