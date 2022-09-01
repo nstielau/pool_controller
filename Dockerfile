@@ -4,16 +4,12 @@ FROM balenalib/raspberry-pi-python:3.10-build
 ENV VERSION=1.0.0
 RUN python --version
 
-
-# Copy the Python Script to blink LED
+# Copy the Python files
 COPY pool_controller.py ./
 RUN mkdir -p gateway
 COPY gateway/ ./gateway/
 RUN mkdir -p gateway
 COPY screenlogic/ ./screenlogic/
-RUN ls -la ./
-RUN ls -la ./screenlogic
-RUN ls -la ./gateway
 
 # Intall the rpi.gpio python module
 RUN pip install --no-cache-dir rpi.gpio

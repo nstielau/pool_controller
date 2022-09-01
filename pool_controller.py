@@ -3,40 +3,32 @@ import sys
 
 from screenlogic.screenlogic import slBridge
 
-BLINKER_PIN=8
 LED_PIN=10
 BUTTON_PIN=12
 
+SWIM_JET_CIRCUIT=502
+
 bridge = slBridge(True)
 
-if(len(sys.argv) > 1):
+if(len(sys.argv) > 1): # look for any any, e.g. "run"
   import RPi.GPIO as GPIO
 
-  # Configure the PIN # 8
-  GPIO.setmode(GPIO.BOARD)
+  # Configure the board
+  GPIO.setmode(GPIO.BOARD) # Use Board numbers https://pinout.xyz/
   GPIO.setup(LED_PIN, GPIO.OUT)
-  GPIO.setup(BLINKER_PIN, GPIO.OUT)
   GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
   GPIO.setwarnings(False)
 
-  # Blink Interval 
-  blink_interval = .5 #Time interval in Seconds
-
-  # Blinker Loop
+  # Loop!
   while True:
-    #GPIO.output(BLINKER_PIN, True)
-    #time.sleep(blink_interval)
-    #GPIO.output(BLINKER_PIN, False)
-    #time.sleep(blink_interval)
-
     input_state = GPIO.input(BUTTON_PIN)
-    if input_state == False:
+    if input_state == False: # pressed!
       print('Button Pressed at ' + time.ctime())
       GPIO.output(LED_PIN, True)
       time.sleep(0.2)
-      current_value = bridge.getCircuit(502)
+      current_value = bridge.getCircuit(SWIM_JET_CIRCUIT)
       print('current value is ' + current_value)
-      new_value = 0 if old_value == "On" else 1
+      new_value = 0 if current_value == "On" else 1
       print('New value is ' + new_value)    
       bridge.setCircuit(502, new_value)
     else:
