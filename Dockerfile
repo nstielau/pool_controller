@@ -4,8 +4,6 @@ FROM balenalib/raspberry-pi-python:3.10-build
 ENV VERSION=1.0.0
 RUN python --version
 
-RUN curl https://sh.rustup.rs -sSf > rustinit && chmod 755 rustinit && ./rustinit -y
-
 # Copy the Python files
 COPY pool_controller.py ./
 COPY echoserver.py ./
@@ -20,7 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir rpi.gpio
 RUN pip install --no-cache-dir bottle
 RUN pip install --no-cache-dir ask-sdk
-RUN pip install --no-cache-dir ask-sdk-webservice-support
+RUN pip install --no-cache-dir ask-sdk-webservice-support || true
 
 # Trigger Python script
 CMD ["bash", "./run.sh"]
