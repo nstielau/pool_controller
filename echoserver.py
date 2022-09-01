@@ -22,7 +22,7 @@ skill_builder = SkillBuilder()
 # Implement request handlers, exception handlers, etc.
 # Register the handlers to the skill builder instance.
 
-@sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
+@skill_builder.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
     # type: (HandlerInput) -> Response
     speech_text = "Welcome to the Alexa Skills Kit, you can say hello!"
@@ -32,7 +32,7 @@ def launch_request_handler(handler_input):
         False)
     return handler_input.response_builder.response
 
-@sb.request_handler(can_handle_func=is_intent_name("HelloWorldIntent"))
+@skill_builder.request_handler(can_handle_func=is_intent_name("HelloWorldIntent"))
 def hello_world_intent_handler(handler_input):
     # type: (HandlerInput) -> Response
     speech_text = "Hello World!"
