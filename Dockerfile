@@ -9,6 +9,7 @@ RUN mkdir -p gateway
 COPY screenlogic/ ./screenlogic/
 RUN ls -la ./
 RUN ls -la ./screenlogic
+RUN ls -la ./gateway
 
 # Intall the rpi.gpio python module
 RUN pip install --no-cache-dir rpi.gpio
