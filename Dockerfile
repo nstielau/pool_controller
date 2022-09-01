@@ -13,6 +13,7 @@ COPY screenlogic/ ./screenlogic/
 
 # Intall the rpi.gpio python module
 RUN pip install --no-cache-dir rpi.gpio
+RUN pip install --no-cache-dir bottle
 
 # Trigger Python script
 CMD ["python", "./pool_controller.py", "run"]
