@@ -1,3 +1,4 @@
+import json
 import logging
 
 from screenlogic.screenlogic import slBridge    
@@ -49,7 +50,39 @@ def stop_swimjet_intent_handler(handler_input):
         SimpleCard(speech_text, speech_text)).set_should_end_session(True)
     return handler_input.response_builder.response
 
+@skill_builder.request_handler(
+    can_handle_func=lambda handler_input :
+        is_intent_name("AMAZON.CancelIntent")(handler_input) or
+        is_intent_name("AMAZON.StopIntent")(handler_input))
+def cancel_and_stop_intent_handler(handler_input):
+    # type: (HandlerInput) -> Response
+    speech_text = "Party on!"
+
+    handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard("Party on", speech_text)).set_should_end_session(
+            True)
+    return handler_input.response_builder.response
+
+@skill_builder.exception_handler(can_handle_func=lambda i, e: True)
+def all_exception_handler(handler_input, exception):
+    print(exception)
+
+    speech = "Sorry, I didn't get it. Can you please say it again!!"
+    handler_input.response_builder.speak(speech).ask(speech)
+    return handler_input.response_builder.response
+
 webservice_handler = WebserviceSkillHandler(skill=skill_builder.create())
+
+
+
+#####################################################################
+#####################################################################
+# helpers
+#####################################################################
+def pretty_print_json(json_data):
+    json_object = json.loads(json_data)
+    json_formatted_str = json.dumps(json_object, indent=2)
+    print(json_formatted_str)
 
 #####################################################################
 #####################################################################
@@ -63,8 +96,9 @@ def index():
 def index():
     body = request.body.read().decode()
     headers = request.headers
+    logger.info("Testing logging")
     print(headers)
-    print(body)
+    pretty_print_json(body)
     print()
     return webservice_handler.verify_request_and_dispatch(headers, body)
 
