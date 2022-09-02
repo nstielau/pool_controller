@@ -1,5 +1,7 @@
 import logging
 
+from screenlogic.screenlogic import slBridge    
+
 from bottle import route, run, template, request
 
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -19,27 +21,32 @@ logger.setLevel(logging.INFO)
 
 skill_builder = SkillBuilder()
 
-# Implement request handlers, exception handlers, etc.
-# Register the handlers to the skill builder instance.
-
 @skill_builder.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
-    # type: (HandlerInput) -> Response
-    speech_text = "Welcome to the Alexa Skills Kit, you can say hello!"
+    speech_text = "Pool party time"
 
     handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text)).set_should_end_session(
-        False)
+        SimpleCard(speech_text, speech_text)).set_should_end_session(False)
     return handler_input.response_builder.response
 
-@skill_builder.request_handler(can_handle_func=is_intent_name("HelloWorldIntent"))
-def hello_world_intent_handler(handler_input):
-    # type: (HandlerInput) -> Response
-    speech_text = "Hello World!"
+@skill_builder.request_handler(can_handle_func=is_intent_name("StartSwimJetIntent"))
+def start_swimjet_intent_handler(handler_input):
+    speech_text = "Pool jet started"
+
+    slBridge(True).setCircuit(502, 1)
 
     handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text)).set_should_end_session(
-        True)
+        SimpleCard(speech_text, speech_text)).set_should_end_session(True)
+    return handler_input.response_builder.response
+
+@skill_builder.request_handler(can_handle_func=is_intent_name("StopSwimJetIntent"))
+def stop_swimjet_intent_handler(handler_input):
+    speech_text = "Pool jet stopped"
+
+    slBridge(True).setCircuit(502, 0)
+
+    handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard(speech_text, speech_text)).set_should_end_session(True)
     return handler_input.response_builder.response
 
 webservice_handler = WebserviceSkillHandler(skill=skill_builder.create())
@@ -59,7 +66,6 @@ def index():
     print(headers)
     print(body)
     print()
-    # Convert the response str into web service format and return.
     return webservice_handler.verify_request_and_dispatch(headers, body)
 
 run(host='0.0.0.0', port=80)

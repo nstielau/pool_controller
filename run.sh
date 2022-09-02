@@ -1,3 +1,3 @@
 #!/bin/sh
 python ./echoserver.py & 
-python ./pool_controller.py run
+python ./pool_controller.py
