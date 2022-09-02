@@ -1,5 +1,6 @@
 import json
 import logging
+import sys
 
 from screenlogic.screenlogic import slBridge    
 
@@ -14,6 +15,9 @@ from ask_sdk_model.ui import SimpleCard
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logger.debug("Debug test")
+logger.info("Info test")
 
 #####################################################################
 #####################################################################
@@ -80,9 +84,7 @@ webservice_handler = WebserviceSkillHandler(skill=skill_builder.create())
 # helpers
 #####################################################################
 def pretty_print_json(json_data):
-    json_object = json.loads(json_data)
-    json_formatted_str = json.dumps(json_object, indent=2)
-    print(json_formatted_str)
+    logger.debug(json.dumps(json.loads(json_data), indent=2))
 
 #####################################################################
 #####################################################################
@@ -97,9 +99,8 @@ def index():
     body = request.body.read().decode()
     headers = request.headers
     logger.info("Testing logging")
-    print(headers)
+    logger.info(headers)
     pretty_print_json(body)
-    print()
     return webservice_handler.verify_request_and_dispatch(headers, body)
 
 run(host='0.0.0.0', port=80)
