@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import sys
 
 from screenlogic.screenlogic import slBridge    
@@ -13,9 +14,11 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
 
+LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.basicConfig(stream=sys.stdout, level=LOGLEVEL)
 logger.debug("Debug test")
 logger.info("Info test")
 
