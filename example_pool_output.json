@@ -1,0 +1,167 @@
+{
+	"spa": {
+		"id": 500,
+		"name": "Spa",
+		"state": "on"
+	},
+	"cleaner": {
+		"id": 501,
+		"name": "Cleaner",
+		"state": "off"
+	},
+	"swim_jets": {
+		"id": 502,
+		"name": "Swim Jets",
+		"state": "off"
+	},
+	"pool_light": {
+		"id": 503,
+		"name": "Pool Light",
+		"state": "off"
+	},
+	"spa_light": {
+		"id": 504,
+		"name": "Spa Light",
+		"state": "off"
+	},
+	"pool": {
+		"id": 505,
+		"name": "Pool",
+		"state": "off"
+	},
+	"aux_5": {
+		"id": 506,
+		"name": "Aux 5",
+		"state": "off"
+	},
+	"aux_6": {
+		"id": 507,
+		"name": "Aux 6",
+		"state": "off"
+	},
+	"aux_7": {
+		"id": 508,
+		"name": "Aux 7",
+		"state": "off"
+	},
+	"feature_1": {
+		"id": 510,
+		"name": "Feature 1",
+		"state": "off"
+	},
+	"feature_2": {
+		"id": 511,
+		"name": "Feature 2",
+		"state": "off"
+	},
+	"feature_3": {
+		"id": 512,
+		"name": "Feature 3",
+		"state": "off"
+	},
+	"feature_4": {
+		"id": 513,
+		"name": "Feature 4",
+		"state": "off"
+	},
+	"feature_5": {
+		"id": 514,
+		"name": "Feature 5",
+		"state": "off"
+	},
+	"feature_6": {
+		"id": 515,
+		"name": "Feature 6",
+		"state": "off"
+	},
+	"feature_7": {
+		"id": 516,
+		"name": "Feature 7",
+		"state": "off"
+	},
+	"feature_8": {
+		"id": 517,
+		"name": "Feature 8",
+		"state": "off"
+	},
+	"auxex": {
+		"id": 519,
+		"name": "AuxEx",
+		"state": "off"
+	},
+	"air_temperature": {
+		"name": "Air Temperature",
+		"state": "66 \u00b0F"
+	},
+	"current_pool_temperature": {
+		"name": "Current Pool Temperature",
+		"state": "60 \u00b0F"
+	},
+	"pool_heater": {
+		"id": "heat_status_0",
+		"name": "Pool Heater",
+		"state": "off"
+	},
+	"pool_heat_set_point": {
+		"name": "Pool Heat Set Point",
+		"state": "70 \u00b0F"
+	},
+	"pool_cool_set_point": {
+		"name": "Pool Cool Set Point",
+		"state": "0 \u00b0F"
+	},
+	"pool_heater_mode": {
+		"name": "Pool Heater Mode",
+		"state": 0
+	},
+	"current_spa_temperature": {
+		"name": "Current Spa Temperature",
+		"state": "97 \u00b0F"
+	},
+	"spa_heater": {
+		"id": "heat_status_1",
+		"name": "Spa Heater",
+		"state": "off"
+	},
+	"spa_heat_set_point": {
+		"name": "Spa Heat Set Point",
+		"state": "101 \u00b0F"
+	},
+	"spa_cool_set_point": {
+		"name": "Spa Cool Set Point",
+		"state": "66 \u00b0F"
+	},
+	"spa_heater_mode": {
+		"name": "Spa Heater Mode",
+		"state": 0
+	},
+	"ph": {
+		"name": "pH",
+		"state": 0.0
+	},
+	"orp": {
+		"name": "ORP",
+		"state": 0
+	},
+	"saturation_index": {
+		"name": "Saturation Index",
+		"state": 0.0
+	},
+	"salt": {
+		"name": "Salt",
+		"state": "0 ppm"
+	},
+	"ph_tank_level": {
+		"name": "pH Tank Level",
+		"state": 0
+	},
+	"orp_tank_level": {
+		"name": "ORP Tank Level",
+		"state": 0
+	},
+	"chemistry_alarm": {
+		"id": "alarms",
+		"name": "Chemistry Alarm",
+		"state": "on"
+	}
+}
