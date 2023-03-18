@@ -3,7 +3,7 @@ import logging
 import os
 import sys
 
-from screenlogic.screenlogic import slBridge    
+from screenlogic.screenlogic import slBridge
 
 from bottle import route, run, template, request
 
@@ -97,11 +97,19 @@ def pretty_print_json(json_data):
 def index():
     return "hello"
 
+@route('/pool', method=['GET'])
+def pool():
+    return slBridge(True).getJson()
+
+@route('/pool/<attribute>', method=['GET'])
+def pool_attribute(attribute):
+    pool_data = json.loads(slBridge(True).getJson())
+    return pool_data[attribute]
+
 @route('/', method=['POST'])
 def index():
     body = request.body.read().decode()
     headers = request.headers
-    logger.info("Testing logging")
     logger.info(headers)
     pretty_print_json(body)
     return webservice_handler.verify_request_and_dispatch(headers, body)
