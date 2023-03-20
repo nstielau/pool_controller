@@ -41,5 +41,5 @@ class code:
 class mapping:
   BODY_TYPE  = ['Pool', 'Spa']
   HEAT_MODE  = ['Off', 'Solar', "Solar Prefered", 'Heat', "Don't Change"]
-  ON_OFF     = ['Off', 'On']
+  ON_OFF     = ['Off', 'On', 'Unknown']
   COLOR_MODE = ['Off', 'On', 'Set', 'Sync', 'Swim', 'Party', 'Romantic', 'Caribbean', 'American', 'Sunset', 'Royal', 'Save', 'Recall', 'Blue', 'Green', 'Red', 'White', 'Magenta', 'Thumper', 'Next', 'Reset', 'Hold']
