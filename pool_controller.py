@@ -3,7 +3,7 @@ import sys
 
 import RPi.GPIO as GPIO
 
-from screenlogic.screenlogic import slBridge
+from screenlogic.slBridge import slBridge
 
 LED_PIN=10
 BUTTON_PIN=12

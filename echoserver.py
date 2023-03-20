@@ -3,7 +3,7 @@ import logging
 import os
 import sys
 
-from screenlogic.screenlogic import slBridge
+from screenlogic.slBridge import slBridge
 
 from bottle import route, run, template, request
 

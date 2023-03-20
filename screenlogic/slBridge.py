@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import json
 import sys
 import time
@@ -97,6 +95,8 @@ class slBridge:
                 dictData['id'] = k
                 dictData['name'] = d.name
                 dictData['state'] = self._jsonName(d.friendlyState)
+                dictData['state'] = self._jsonName(d.friendlyState)
+                dictData['state'] = self._jsonName(d.friendlyState)
             dictOut[self._jsonName(d.name)] = dictData 
         return json.dumps(dictOut)
 
@@ -135,21 +135,3 @@ class slBridge:
         for k, d in self.__devices.items():
             print("      - {}".format(self._jsonName(d.name)))
 
-
-
-        
-if __name__ == "__main__":
-    bridge = slBridge(True)
-    if(len(sys.argv) > 1):
-        if(sys.argv[1] == 'get'):
-            if(len(sys.argv) == 3):
-                print(bridge.getCircuit(int(sys.argv[2])))
-        elif(sys.argv[1] == 'set'):
-            if(len(sys.argv) == 4):
-                print(bridge.setCircuit(int(sys.argv[2]), int(sys.argv[3])))
-        elif(sys.argv[1] == 'json'):
-            print(bridge.getJson())
-        else:
-            print("Unknown option!")
-    else:
-        print(bridge.getFriendly())#getJson())
