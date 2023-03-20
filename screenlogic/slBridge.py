@@ -94,9 +94,8 @@ class slBridge:
                 dictData = {}
                 dictData['id'] = k
                 dictData['name'] = d.name
-                dictData['state'] = self._jsonName(d.friendlyState)
-                dictData['state'] = self._jsonName(d.friendlyState)
-                dictData['state'] = self._jsonName(d.friendlyState)
+                dictData['friendlyState'] = self._jsonName(d.friendlyState)
+                dictData['state'] = d.state
             dictOut[self._jsonName(d.name)] = dictData 
         return json.dumps(dictOut)
 
