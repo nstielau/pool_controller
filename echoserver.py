@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import re
 import sys
 
 from screenlogic.slBridge import slBridge
@@ -15,6 +16,7 @@ from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
 
 LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
+TOKEN_REGEX = os.environ.get('TOKEN_REGEX', '.*')
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -99,10 +101,16 @@ def index():
 
 @route('/pool', method=['GET'])
 def pool():
+    token = request.get_header("Authentication", "Bearer blah").split()[1]
+    if (not re.match(TOKEN_REGEX, token)):
+        return "Unauthed"
     return slBridge(True).getJson()
 
 @route('/pool/<attribute>', method=['GET'])
 def pool_attribute(attribute):
+    token = request.get_header("Authentication", "Bearer blah").split()[1]
+    if (not re.match(TOKEN_REGEX, token)):
+        return "Unauthed"
     pool_data = json.loads(slBridge(True).getJson())
     return pool_data[attribute]
 
