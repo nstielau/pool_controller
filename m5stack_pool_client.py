@@ -23,7 +23,7 @@ def getPoolData():
   status = M5TextBox(220, 2, "status", lcd.FONT_Default, 0xFFFFFF, rotate=0)
   pool_rct = M5Rect(205, 54, 101, 150, 0x222222, 0xFFFFFF)
   spa_rct = M5Rect(205, 54, 50, 50, 0x222222, 0xFFFFFF)
-  spa_lbl = M5TextBox(216, 77, "", lcd.FONT_Default, 0x000000, rotate=0)
+  spa_lbl = M5TextBox(210, 70, "", lcd.FONT_DejaVu24, 0xFFFFFF, rotate=0)
   btn_a_lbl = M5TextBox(35, 220, "Refresh", lcd.FONT_Default, 0xFFFFFF, rotate=0)
 
   status.setText('Loading')
@@ -37,15 +37,15 @@ def getPoolData():
     if spa_on:
       spa_temp = pool_data["current_spa_temperature"]["state"].split()[0]
       spa_rct = M5Rect(205, 54, 50, 50, 0xFF0000, 0x000000)
-      spa_lbl = M5TextBox(216, 77, spa_temp + " F", lcd.FONT_Default, 0x000000, rotate=0)
+      spa_lbl = M5TextBox(210, 70, spa_temp + " F", lcd.FONT_DejaVu24, 0xFFFFFF, rotate=0)
       label0 = M5TextBox(5, 67, "Hot Tub:" + spa_temp + " F", lcd.FONT_DejaVu24, 0xFFFFFF, rotate=0)
     else:
       spa_rct = M5Rect(205, 54, 50, 50, 0x0000FF, 0x000000)
-      spa_lbl = M5TextBox(216, 77, "Off", lcd.FONT_Default, 0x000000, rotate=0)
+      spa_lbl = M5TextBox(210, 70, "Off", lcd.FONT_DejaVu24, 0xFFFFFF, rotate=0)
     status.setText('Connected')
   except:
     status.setText('Error')
-    label0.setText(str(req.text))
+    raise
 
 # Button listeners
 btnA.wasPressed(getPoolData)
