@@ -8,6 +8,8 @@ from m5stack import *
 from m5ui import *
 from uiflow import *
 
+# Seems like without explicitly connecting
+# this won't work when downloaded.
 wifiCfg.doConnect('SSID', 'password')
 
 # Nice dark grey
