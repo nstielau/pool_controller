@@ -59,6 +59,27 @@ def stop_swimjet_intent_handler(handler_input):
         SimpleCard(speech_text, speech_text)).set_should_end_session(True)
     return handler_input.response_builder.response
 
+@skill_builder.request_handler(can_handle_func=is_intent_name("StopHotTubIntent"))
+def stop_hottub_intent_handler(handler_input):
+    speech_text = "Hot Tub stopped"
+
+    slBridge(True).setCircuit(500, 0)
+
+    handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard(speech_text, speech_text)).set_should_end_session(True)
+    return handler_input.response_builder.response
+
+
+@skill_builder.request_handler(can_handle_func=is_intent_name("StartHotTubIntent"))
+def start_hottub_intent_handler(handler_input):
+    speech_text = "Hot Tub started"
+
+    slBridge(True).setCircuit(500, 1)
+
+    handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard(speech_text, speech_text)).set_should_end_session(True)
+    return handler_input.response_builder.response
+
 @skill_builder.request_handler(
     can_handle_func=lambda handler_input :
         is_intent_name("AMAZON.CancelIntent")(handler_input) or
