@@ -84,7 +84,10 @@ def start_hottub_intent_handler(handler_input):
 def hottub_temp_intent_handler(handler_input):
 
     # Todo: Check if the hot tub is on before checking temperature
-    temp = slBridge(True).getJson()['current_spa_temperature']
+    bridge = slBridge(True)
+    logger.info("Checking hottub temperature")
+    logger.info(pretty_print_json(bridge.getJson()))
+    temp = bridge.getJson()['current_spa_temperature']
     speech_text = "Hot Tub is {} degrees".format(temp)
 
     handler_input.response_builder.speak(speech_text).set_card(
