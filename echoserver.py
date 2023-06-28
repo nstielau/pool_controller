@@ -80,6 +80,17 @@ def start_hottub_intent_handler(handler_input):
         SimpleCard(speech_text, speech_text)).set_should_end_session(True)
     return handler_input.response_builder.response
 
+@skill_builder.request_handler(can_handle_func=is_intent_name("HotTubTempIntent"))
+def hottub_temp_intent_handler(handler_input):
+
+    # Todo: Check if the hot tub is on before checking temperature
+    temp = slBridge(True).getJson()['current_spa_temperature']
+    speech_text = "Hot Tub is {} degrees".format(temp)
+
+    handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard(speech_text, speech_text)).set_should_end_session(True)
+    return handler_input.response_builder.response
+
 @skill_builder.request_handler(
     can_handle_func=lambda handler_input :
         is_intent_name("AMAZON.CancelIntent")(handler_input) or
