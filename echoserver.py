@@ -87,8 +87,8 @@ def hottub_temp_intent_handler(handler_input):
     bridge = slBridge(True)
     logger.info("Checking hottub temperature")
     speech_text = "Hot tub is off"
+    bridgeData = json.loads(bridge.getJson())
     if (bridgeData['spa']['state'] > 0):
-        bridgeData = json.loads(bridge.getJson())
         temp = bridgeData["current_spa_temperature"]["state"]
         speech_text = "Hot Tub is {}".format(temp)
     handler_input.response_builder.speak(speech_text).set_card(
