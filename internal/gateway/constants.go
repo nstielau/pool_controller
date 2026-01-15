@@ -6,19 +6,19 @@ package gateway
 const (
 	MsgCode1 = 0
 
-	ChallengeQuery   = 14
-	ChallengeAnswer  = 15
-	LocalLoginQuery  = 27
-	LocalLoginAnswer = 28
-	VersionQuery     = 8120
-	VersionAnswer    = 8121
-	PoolStatusQuery  = 12526
-	PoolStatusAnswer = 12527
-	ButtonPressQuery = 12530
+	ChallengeQuery    = 14
+	ChallengeAnswer   = 15
+	LocalLoginQuery   = 27
+	LocalLoginAnswer  = 28
+	VersionQuery      = 8120
+	VersionAnswer     = 8121
+	PoolStatusQuery   = 12526
+	PoolStatusAnswer  = 12527
+	ButtonPressQuery  = 12530
 	ButtonPressAnswer = 12531
-	CtrlConfigQuery  = 12532
-	CtrlConfigAnswer = 12533
-	UnknownAnswer    = 13
+	CtrlConfigQuery   = 12532
+	CtrlConfigAnswer  = 12533
+	UnknownAnswer     = 13
 )
 
 // Circuit IDs

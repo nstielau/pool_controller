@@ -17,18 +17,18 @@ type PoolData struct {
 
 // ConfigData contains pool configuration.
 type ConfigData struct {
-	ControllerID     uint32
-	MinSetPoint      [2]int
-	MaxSetPoint      [2]int
-	IsCelsius        bool
-	ControllerType   byte
-	HardwareType     byte
-	EquipmentFlags   int32
-	CircuitCount     int
-	Colors           []Color
-	Pumps            map[int]byte
+	ControllerID      uint32
+	MinSetPoint       [2]int
+	MaxSetPoint       [2]int
+	IsCelsius         bool
+	ControllerType    byte
+	HardwareType      byte
+	EquipmentFlags    int32
+	CircuitCount      int
+	Colors            []Color
+	Pumps             map[int]byte
 	InterfaceTabFlags uint32
-	ShowAlarms       uint32
+	ShowAlarms        uint32
 }
 
 // Circuit represents a pool circuit (switch).

@@ -57,9 +57,9 @@ type Intent struct {
 
 // Handler handles Alexa skill requests.
 type Handler struct {
-	bridge   *pool.Bridge
-	verifier *Verifier
-	logger   *log.Logger
+	bridge     *pool.Bridge
+	verifier   *Verifier
+	logger     *log.Logger
 	skipVerify bool
 }
 

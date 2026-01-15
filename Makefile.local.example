@@ -1,0 +1,11 @@
+# Local configuration overrides (copy to Makefile.local)
+# This file is an example - Makefile.local is gitignored
+
+# Raspberry Pi SSH target
+PI_HOST = pi@192.168.1.100
+
+# Pentair gateway IP (for local development)
+GATEWAY_IP = 192.168.1.200
+
+# Development server port
+DEV_PORT = 8081

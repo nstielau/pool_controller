@@ -42,6 +42,9 @@ cache/
 logs/
 tmp/
 
+# Local configuration (contains IPs, secrets)
+Makefile.local
+
 # Claude/AI tooling
 .aider*
 .claude/

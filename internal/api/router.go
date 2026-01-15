@@ -8,8 +8,8 @@ import (
 
 // Router sets up the HTTP routes for the pool controller.
 type Router struct {
-	mux         *http.ServeMux
-	poolHandler *PoolHandler
+	mux          *http.ServeMux
+	poolHandler  *PoolHandler
 	alexaHandler http.Handler
 }
 

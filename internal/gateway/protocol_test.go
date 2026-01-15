@@ -6,10 +6,10 @@ import (
 
 func TestMakeMessage(t *testing.T) {
 	tests := []struct {
-		name     string
-		msgCode  uint16
-		data     []byte
-		wantLen  int
+		name    string
+		msgCode uint16
+		data    []byte
+		wantLen int
 	}{
 		{
 			name:    "empty data",
@@ -123,8 +123,8 @@ func TestMakeMessageString(t *testing.T) {
 
 func TestGetMessageString(t *testing.T) {
 	tests := []struct {
-		name     string
-		input    string
+		name  string
+		input string
 	}{
 		{name: "simple", input: "Android"},
 		{name: "longer", input: "Pool Controller"},
