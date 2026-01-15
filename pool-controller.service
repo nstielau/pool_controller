@@ -1,0 +1,27 @@
+[Unit]
+Description=Pool Controller - Pentair ScreenLogic Control Server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/pool-controller/pool-controller
+WorkingDirectory=/opt/pool-controller
+Restart=always
+RestartSec=10
+User=root
+
+# Environment variables
+Environment=PORT=80
+Environment=TOKEN_REGEX=.*
+# Set GATEWAY_IP if auto-discovery doesn't work
+# Environment=GATEWAY_IP=192.168.1.100
+# Set to true to skip Alexa signature verification (development only)
+# Environment=ALEXA_SKIP_VERIFY=false
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pool-controller
+
+[Install]
+WantedBy=multi-user.target
