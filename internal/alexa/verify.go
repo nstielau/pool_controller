@@ -5,6 +5,7 @@ import (
 	"crypto"
 	"crypto/rsa"
 	"crypto/sha1"
+	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/pem"
@@ -43,11 +44,13 @@ func (v *Verifier) VerifyRequest(r *http.Request, body []byte) error {
 		return fmt.Errorf("invalid certificate URL: %w", err)
 	}
 
-	// 2. Get the signature
+	// 2. Get the signature (prefer SHA256, fall back to SHA1)
 	signature := r.Header.Get("Signature-256")
+	useSHA256 := true
 	if signature == "" {
 		// Fall back to SHA1 signature for older requests
 		signature = r.Header.Get("Signature")
+		useSHA256 = false
 	}
 	if signature == "" {
 		return fmt.Errorf("missing Signature header")
@@ -60,7 +63,7 @@ func (v *Verifier) VerifyRequest(r *http.Request, body []byte) error {
 	}
 
 	// 4. Verify the signature
-	if err := v.verifySignature(cert, signature, body); err != nil {
+	if err := v.verifySignature(cert, signature, body, useSHA256); err != nil {
 		return fmt.Errorf("signature verification failed: %w", err)
 	}
 
@@ -175,7 +178,7 @@ func (v *Verifier) validateCertificate(cert *x509.Certificate) error {
 }
 
 // verifySignature checks the request signature.
-func (v *Verifier) verifySignature(cert *x509.Certificate, signature string, body []byte) error {
+func (v *Verifier) verifySignature(cert *x509.Certificate, signature string, body []byte, useSHA256 bool) error {
 	// Decode base64 signature
 	sig, err := base64.StdEncoding.DecodeString(signature)
 	if err != nil {
@@ -188,11 +191,14 @@ func (v *Verifier) verifySignature(cert *x509.Certificate, signature string, bod
 		return fmt.Errorf("certificate does not contain RSA public key")
 	}
 
-	// Compute hash of body
-	hash := sha1.Sum(body)
-
-	// Verify signature
-	err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA1, hash[:], sig)
+	// Compute hash of body and verify signature
+	if useSHA256 {
+		hash := sha256.Sum256(body)
+		err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, hash[:], sig)
+	} else {
+		hash := sha1.Sum(body)
+		err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA1, hash[:], sig)
+	}
 	if err != nil {
 		return fmt.Errorf("RSA verification failed: %w", err)
 	}

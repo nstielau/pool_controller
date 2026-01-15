@@ -110,10 +110,20 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// Log request
-	h.logger.Printf("Request type: %s, Intent: %s", req.Request.Type, req.Request.Intent.Name)
+	// Log request details
+	sessionID := req.Session.SessionID
+	if len(sessionID) > 20 {
+		sessionID = sessionID[:20] + "..."
+	}
+	h.logger.Printf("Request: type=%s intent=%s session=%s new=%v locale=%s",
+		req.Request.Type,
+		req.Request.Intent.Name,
+		sessionID,
+		req.Session.New,
+		req.Request.Locale)
 
 	// Handle request
+	startTime := time.Now()
 	var response *Response
 	switch req.Request.Type {
 	case "LaunchRequest":
@@ -126,6 +136,16 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		response = SpeakResponse("I don't know how to handle that.", true)
 	}
 
+	// Log response
+	responseText := ""
+	if response.Response.OutputSpeech != nil {
+		responseText = response.Response.OutputSpeech.Text
+	}
+	h.logger.Printf("Response: text=%q endSession=%v duration=%v",
+		responseText,
+		response.Response.ShouldEndSession,
+		time.Since(startTime))
+
 	// Send response
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
@@ -133,7 +153,8 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 // handleLaunchRequest handles skill launch.
 func (h *Handler) handleLaunchRequest() *Response {
-	return SpeakResponse("Pool party time", true)
+	// Keep session open (false) so user can follow up with commands
+	return SpeakResponse("Pool party time. Do you want to check the hot tub temp or turn on the pool jets?", false)
 }
 
 // handleIntent routes to the appropriate intent handler.

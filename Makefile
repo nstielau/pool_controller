@@ -1,4 +1,4 @@
-.PHONY: build build-arm deploy run test clean setup-pi logs status help fmt vet lint coverage
+.PHONY: build build-arm deploy run test clean setup-pi logs logs-caddy logs-all status help fmt vet lint coverage
 
 # Default configuration (override in Makefile.local)
 PI_HOST ?= pi@raspberrypi.local
@@ -36,7 +36,9 @@ help:
 	@echo "  setup-pi    First-time Pi setup (installs systemd service)"
 	@echo "  deploy      Build and deploy to Pi"
 	@echo "  status      Check service status on Pi"
-	@echo "  logs        Tail logs from Pi"
+	@echo "  logs        Tail pool-controller logs (live)"
+	@echo "  logs-caddy  Tail Caddy logs (live)"
+	@echo "  logs-all    Tail both pool-controller and Caddy logs"
 	@echo ""
 	@echo "Configuration (set in Makefile.local):"
 	@echo "  PI_HOST     Raspberry Pi SSH target (current: $(PI_HOST))"
@@ -103,9 +105,17 @@ setup-pi: build-arm
 		sudo systemctl start pool-controller"
 	@echo "Pool controller installed and started on $(PI_HOST)"
 
-## logs: View logs on Pi
+## logs: View pool-controller logs on Pi (live)
 logs:
 	ssh $(PI_HOST) "sudo journalctl -u pool-controller -f"
+
+## logs-caddy: View Caddy logs on Pi (live)
+logs-caddy:
+	ssh $(PI_HOST) "sudo journalctl -u caddy -f"
+
+## logs-all: View both pool-controller and Caddy logs (live)
+logs-all:
+	ssh $(PI_HOST) "sudo journalctl -u pool-controller -u caddy -f"
 
 ## status: Check service status on Pi
 status:
